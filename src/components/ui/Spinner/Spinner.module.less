@@ -1,0 +1,21 @@
+@size: 18px;
+@border-size: 2px;
+@primary-color: grey;
+
+.spinner {
+  width: @size;
+  height: @size;
+  border: @border-size solid lighten(@primary-color, 80%);
+  border-top: @border-size solid @primary-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

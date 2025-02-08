@@ -4,9 +4,11 @@ import "./index.css"
 import Homepage from "./pages/Homepage.jsx"
 import About from "./pages/About.jsx"
 import Cart from "./pages/Cart.jsx"
-import Authenticate from "./pages/Authenticate.jsx"
+import Authenticate from "./pages/Authenticate/Authenticate.jsx"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Layout from "./components/ui/Layout"
+import { AuthProvider } from "./context/AuthContext.jsx"
+import Profile from "./pages/Profile.jsx"
 
 const router = createBrowserRouter([
   {
@@ -14,20 +16,24 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Homepage />,
       },
       {
-        path: "/about",
+        path: "about",
         element: <About />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <Cart />,
       },
       {
-        path: "/authenticate",
+        path: "authenticate",
         element: <Authenticate />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },
@@ -35,6 +41,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 )
